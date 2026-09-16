@@ -523,7 +523,9 @@ form.addEventListener('submit', async (e) => {
   } catch (error) {
     recaptchaToken.value = '';
     setLoading(false);
-    const message = error.message?.includes('timed out')
+    const message = error.status === 403
+      ? 'Email service blocked this file origin. Open the portfolio through a web server, or enable non-browser access in EmailJS Security settings.'
+      : error.message?.includes('timed out')
       ? 'Session expired, please click Send again.'
       : (error.message || 'Something went wrong. Please try again.');
     setStatus('error', message);

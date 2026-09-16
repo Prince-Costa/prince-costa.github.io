@@ -5,6 +5,10 @@
 
 // Theme switcher — persists across pages via localStorage.
 // Multiple toggles can exist (navbar + sidebar); keep them in sync.
+document.querySelectorAll('[data-current-year]').forEach((year) => {
+  year.textContent = new Date().getFullYear();
+});
+
 const applyTheme = (theme) => {
   document.documentElement.setAttribute('data-theme', theme);
   try { localStorage.setItem('theme', theme); } catch (e) { /* private mode */ }
