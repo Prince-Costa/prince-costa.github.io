@@ -527,7 +527,7 @@ form.addEventListener('submit', async (e) => {
       ? 'Email service blocked this file origin. Open the portfolio through a web server, or enable non-browser access in EmailJS Security settings.'
       : error.message?.includes('timed out')
       ? 'Session expired, please click Send again.'
-      : (error.message || 'Something went wrong. Please try again.');
+      : (error.text || error.message || 'Something went wrong. Please try again.');
     setStatus('error', message);
   }
 });
