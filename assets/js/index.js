@@ -466,12 +466,31 @@ const getRecaptchaToken = () => new Promise((resolve, reject) => {
   });
 });
 
-const withTimeout = (promise, message) => Promise.race([
-  promise,
-  new Promise((_, reject) => {
-    window.setTimeout(() => reject(new Error(message)), REQUEST_TIMEOUT_MS);
-  }),
-]);
+const withTimeout = (promise, message) => new Promise((resolve, reject) => {
+  const timeoutId = window.setTimeout(() => reject(new Error(message)), REQUEST_TIMEOUT_MS);
+  promise.then(
+    (value) => {
+      window.clearTimeout(timeoutId);
+      resolve(value);
+    },
+    (error) => {
+      window.clearTimeout(timeoutId);
+      reject(error);
+    }
+  );
+});
+
+const submitWithFreshToken = async () => {
+  recaptchaToken.value = await withTimeout(
+    getRecaptchaToken(),
+    'CAPTCHA verification timed out.'
+  );
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+  await withTimeout(
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form'),
+    'Email service timed out.'
+  );
+};
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -492,21 +511,21 @@ form.addEventListener('submit', async (e) => {
 
   setLoading(true);
   try {
-    recaptchaToken.value = await withTimeout(
-      getRecaptchaToken(),
-      'CAPTCHA verification timed out. Please try again.'
-    );
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-    await withTimeout(
-      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form'),
-      'Email service timed out. Please try again.'
-    );
+    try {
+      await submitWithFreshToken();
+    } catch (firstError) {
+      recaptchaToken.value = '';
+      await submitWithFreshToken();
+    }
     setStatus('success', 'Message sent successfully. Thanks for reaching out!');
     form.reset();
     startCooldown();
   } catch (error) {
     recaptchaToken.value = '';
     setLoading(false);
-    setStatus('error', error.message || 'Something went wrong. Please try again.');
+    const message = error.message?.includes('timed out')
+      ? 'Session expired, please click Send again.'
+      : (error.message || 'Something went wrong. Please try again.');
+    setStatus('error', message);
   }
 });
