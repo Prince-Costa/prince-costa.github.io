@@ -387,13 +387,21 @@ const metricsObserver = new IntersectionObserver((entries) => {
 const metricsEl = document.querySelector('.about-metrics');
 if (metricsEl) metricsObserver.observe(metricsEl);
 
-// Contact form — validation + mailto fallback (no backend)
+// Contact form — EmailJS delivery with honeypot, reCAPTCHA v3, and cooldown.
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('cf-status');
 const submitBtn = document.getElementById('cf-submit');
 const btnText = submitBtn.querySelector('.cf-btn-text');
 const btnLoading = submitBtn.querySelector('.cf-btn-loading');
+const honeypot = form.elements.website;
+const recaptchaToken = document.getElementById('recaptcha-token');
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAILJS_PUBLIC_KEY = '1klBRVxE70Egr_CfW';
+const EMAILJS_SERVICE_ID = 'service_wy3zkya';
+const EMAILJS_TEMPLATE_ID = '1klBRVxE70Egr_CfW';
+const RECAPTCHA_SITE_KEY = '6LdEtr4tAAAAABMTQjPj0QEpHj88Vs59WKeDyQjd';
+const COOLDOWN_SECONDS = 60;
+let cooldownTimer = null;
 
 const fields = {
   name: document.getElementById('cf-name'),
@@ -420,9 +428,48 @@ function setStatus(type, msg) {
   statusEl.classList.remove('d-none');
 }
 
-form.addEventListener('submit', (e) => {
+const setLoading = (isLoading) => {
+  submitBtn.disabled = isLoading;
+  btnText.classList.toggle('d-none', isLoading);
+  btnLoading.classList.toggle('d-none', !isLoading);
+};
+
+const startCooldown = () => {
+  let remaining = COOLDOWN_SECONDS;
+  submitBtn.disabled = true;
+  btnText.classList.remove('d-none');
+  btnLoading.classList.add('d-none');
+  btnText.textContent = `Sent · try again in ${remaining}s`;
+  cooldownTimer = window.setInterval(() => {
+    remaining -= 1;
+    if (remaining <= 0) {
+      window.clearInterval(cooldownTimer);
+      cooldownTimer = null;
+      submitBtn.disabled = false;
+      btnText.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane ms-2"></i>';
+      return;
+    }
+    btnText.textContent = `Sent · try again in ${remaining}s`;
+  }, 1000);
+};
+
+const getRecaptchaToken = () => new Promise((resolve, reject) => {
+  if (RECAPTCHA_SITE_KEY === 'YOUR_RECAPTCHA_SITE_KEY' || !window.grecaptcha) {
+    reject(new Error('reCAPTCHA is not configured yet.'));
+    return;
+  }
+  window.grecaptcha.ready(() => {
+    window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+      .then(resolve)
+      .catch(reject);
+  });
+});
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   statusEl.classList.add('d-none');
+
+  if (honeypot.value.trim() !== '') return;
 
   const allValid = Object.values(fields).map(validateField).every(Boolean);
   if (!allValid) {
@@ -430,20 +477,22 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  submitBtn.disabled = true;
-  btnText.classList.add('d-none');
-  btnLoading.classList.remove('d-none');
+  if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' || !window.emailjs) {
+    setStatus('error', 'The contact service is not configured yet.');
+    return;
+  }
 
-  // No backend yet — compose a prefilled mail draft as a graceful fallback
-  setTimeout(() => {
-    const body = `Name: ${fields.name.value.trim()}\nEmail: ${fields.email.value.trim()}\n\n${fields.message.value.trim()}`;
-    window.location.href = `mailto:princecosta9@gmail.com?subject=${encodeURIComponent(fields.subject.value.trim())}&body=${encodeURIComponent(body)}`;
-
-    setStatus('success', 'Opening your email client to send the message. Thanks for reaching out!');
+  setLoading(true);
+  try {
+    recaptchaToken.value = await getRecaptchaToken();
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form');
+    setStatus('success', 'Message sent successfully. Thanks for reaching out!');
     form.reset();
-
-    submitBtn.disabled = false;
-    btnText.classList.remove('d-none');
-    btnLoading.classList.add('d-none');
-  }, 900);
+    startCooldown();
+  } catch (error) {
+    recaptchaToken.value = '';
+    setLoading(false);
+    setStatus('error', error.message || 'Something went wrong. Please try again.');
+  }
 });

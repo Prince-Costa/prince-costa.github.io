@@ -1323,31 +1323,33 @@
                             <div class="col-md-6">
                               <div class="form-field">
                                 <label for="cf-name" class="form-label">Name</label>
-                                <input type="text" id="cf-name" class="form-input" placeholder="John Doe" required />
+                                <input type="text" id="cf-name" name="name" class="form-input" placeholder="John Doe" required />
                                 <span class="field-error">Please enter your name.</span>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-field">
                                 <label for="cf-email" class="form-label">Email</label>
-                                <input type="email" id="cf-email" class="form-input" placeholder="john@example.com" required />
+                                <input type="email" id="cf-email" name="email" class="form-input" placeholder="john@example.com" required />
                                 <span class="field-error">Please enter a valid email.</span>
                               </div>
                             </div>
                             <div class="col-12">
                               <div class="form-field">
                                 <label for="cf-subject" class="form-label">Subject</label>
-                                <input type="text" id="cf-subject" class="form-input" placeholder="Project inquiry" required />
+                                <input type="text" id="cf-subject" name="subject" class="form-input" placeholder="Project inquiry" required />
                                 <span class="field-error">Please enter a subject.</span>
                               </div>
                             </div>
                             <div class="col-12">
                               <div class="form-field">
                                 <label for="cf-message" class="form-label">Message</label>
-                                <textarea id="cf-message" class="form-input" rows="5" placeholder="Tell me about your project..." required></textarea>
+                                <textarea id="cf-message" name="message" class="form-input" rows="5" placeholder="Tell me about your project..." required></textarea>
                                 <span class="field-error">Please enter a message.</span>
                               </div>
                             </div>
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+                            <input type="hidden" name="recaptcha_token" id="recaptcha-token" />
                             <div class="col-12 text-center text-md-start">
                               <button type="submit" class="btn-neon" id="cf-submit">
                                 <span class="cf-btn-text">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></span>
@@ -1421,6 +1423,8 @@
   <script src="assets/vendor/js/typed.umd.js"></script>
   <script src="assets/vendor/js/gsap.min.js"></script>
   <script src="assets/vendor/js/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
   <!-- JS: site (shared + homepage) -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/index.js"></script>
