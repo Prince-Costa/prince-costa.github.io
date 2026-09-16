@@ -398,9 +398,10 @@ const recaptchaToken = document.getElementById('recaptcha-token');
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const EMAILJS_PUBLIC_KEY = '1klBRVxE70Egr_CfW';
 const EMAILJS_SERVICE_ID = 'service_wy3zkya';
-const EMAILJS_TEMPLATE_ID = '1klBRVxE70Egr_CfW';
+const EMAILJS_TEMPLATE_ID = 'template_1lrfjtb';
 const RECAPTCHA_SITE_KEY = '6LdEtr4tAAAAABMTQjPj0QEpHj88Vs59WKeDyQjd';
 const COOLDOWN_SECONDS = 60;
+const REQUEST_TIMEOUT_MS = 15000;
 let cooldownTimer = null;
 
 const fields = {
@@ -465,6 +466,13 @@ const getRecaptchaToken = () => new Promise((resolve, reject) => {
   });
 });
 
+const withTimeout = (promise, message) => Promise.race([
+  promise,
+  new Promise((_, reject) => {
+    window.setTimeout(() => reject(new Error(message)), REQUEST_TIMEOUT_MS);
+  }),
+]);
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   statusEl.classList.add('d-none');
@@ -484,9 +492,15 @@ form.addEventListener('submit', async (e) => {
 
   setLoading(true);
   try {
-    recaptchaToken.value = await getRecaptchaToken();
+    recaptchaToken.value = await withTimeout(
+      getRecaptchaToken(),
+      'CAPTCHA verification timed out. Please try again.'
+    );
     emailjs.init(EMAILJS_PUBLIC_KEY);
-    await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form');
+    await withTimeout(
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form'),
+      'Email service timed out. Please try again.'
+    );
     setStatus('success', 'Message sent successfully. Thanks for reaching out!');
     form.reset();
     startCooldown();
