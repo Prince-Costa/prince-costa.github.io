@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects | Prince Costa</title>
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/css/all.min.css" rel="stylesheet" />
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Restore saved theme before first paint (no flash of wrong theme)
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) { /* private mode */ }
+  </script>
+</head>
+<body>
+
+  <!-- VS Code-style floating navigation -->
+  <aside class="floating-sidebar is-hidden" id="floating-sidebar" aria-label="Quick navigation">
+    <div class="sidebar-topbar">
+      <span class="sidebar-folder"><i class="fa-regular fa-folder-open"></i> PORTFOLIO</span>
+    </div>
+
+    <div class="sidebar-profile">
+      <div class="sidebar-profile-ring"></div>
+      <img class="sidebar-profile-img"
+           src="asset/img/about.webp"
+           alt="Prince Costa — Profile" />
+    </div>
+
+    <!-- Edge handle: lives on the sidebar's right border, beside the avatar -->
+    <button class="sidebar-handle" type="button" aria-label="Show navigation" aria-controls="floating-sidebar" aria-expanded="false">
+      <i class="fa-solid fa-angles-right"></i>
+    </button>
+
+
+  
+    <div class="sidebar-file">
+      <i class="fa-solid fa-code"></i> <span id="sidebar-file-label">projects.html</span>
+      <button class="theme-toggle sidebar-theme-toggle ms-2" type="button" aria-label="Toggle light / dark theme" title="Toggle theme">
+        <i class="fa-solid fa-moon m-0"></i>
+        <i class="fa-solid fa-sun m-0"></i>
+      </button>
+    </div>
+    <nav class="sidebar-nav" aria-label="Portfolio sections">
+      <div class="sidebar-item has-preview">
+        <a href="index.html" data-sidebar-link="home"><span class="sidebar-line">00</span><i class="fa-solid fa-house"></i> Home</a>
+        <div class="sidebar-preview" aria-label="Home preview">
+          <a class="nav-preview-item" href="index.html">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Hero · Hello World</span>
+              <span class="nav-preview-meta">Top of homepage</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#about" data-sidebar-link="about"><span class="sidebar-line">01</span><i class="fa-regular fa-user"></i> About</a>
+        <div class="sidebar-preview" aria-label="About preview">
+          <a class="nav-preview-item" href="index.html#about">
+            <i class="fa-regular fa-user"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">About Section</span>
+              <span class="nav-preview-meta">Profile · Strengths · Metrics</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#skills" data-sidebar-link="skills"><span class="sidebar-line">02</span><i class="fa-solid fa-layer-group"></i> Skills</a>
+        <div class="sidebar-preview" aria-label="Skills preview">
+          <a class="nav-preview-item" href="index.html#skills">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Skills Section</span>
+              <span class="nav-preview-meta">Backend · Frontend · Tools</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="projects.html" data-sidebar-link="projects"><span class="sidebar-line">03</span><i class="fa-solid fa-briefcase"></i> Projects</a>
+        <div class="sidebar-preview" aria-label="Projects preview">
+          <a class="nav-preview-item" href="index.html#featured-projects">
+            <i class="fa-solid fa-star"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Featured Projects</span>
+              <span class="nav-preview-meta">Signature builds · Pinned</span>
+            </span>
+          </a>
+          <a class="nav-preview-item" href="index.html#projects">
+            <i class="fa-solid fa-display"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">More Projects</span>
+              <span class="nav-preview-meta">Carousel · More Projects</span>
+            </span>
+          </a>
+          <a class="nav-preview-item" href="projects.html">
+            <i class="fa-solid fa-table-columns"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Projects Page</span>
+              <span class="nav-preview-meta">All projects · Page</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#clients" data-sidebar-link="clients"><span class="sidebar-line">04</span><i class="fa-solid fa-handshake"></i> Clients</a>
+        <div class="sidebar-preview" aria-label="Clients preview">
+          <a class="nav-preview-item" href="index.html#clients">
+            <i class="fa-solid fa-handshake"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Clients Section</span>
+              <span class="nav-preview-meta">8 partners · Floating cards</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#experience" data-sidebar-link="experience"><span class="sidebar-line">05</span><i class="fa-solid fa-route"></i> Experience</a>
+        <div class="sidebar-preview" aria-label="Experience preview">
+          <a class="nav-preview-item" href="index.html#experience">
+            <i class="fa-solid fa-route"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Experience Section</span>
+              <span class="nav-preview-meta">Timeline · 3 roles</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#contact" data-sidebar-link="contact"><span class="sidebar-line">06</span><i class="fa-regular fa-envelope"></i> Contact</a>
+        <div class="sidebar-preview" aria-label="Contact preview">
+          <a class="nav-preview-item" href="index.html#contact">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Contact Section</span>
+              <span class="nav-preview-meta">Form · Email · Phone</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar-footer"><span class="sidebar-dot"></span> online <span>main*</span></div>
+  </aside>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="index.html">
+        <span style="color: var(--accent-cyan);">_ _{{ </span>Prince Costa<span style="color: var(--accent-cyan);"> }}</span>
+      </a>
+      <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item me-1">
+            <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme" title="Toggle theme">
+              <i class="fa-solid fa-moon"></i>
+              <i class="fa-solid fa-sun"></i>
+            </button>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="index.html" data-page-link="home">Home</a>
+              <div class="nav-preview" aria-label="Home preview">
+                <a class="nav-preview-item" href="index.html">
+                  <i class="fa-solid fa-user-astronaut"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Hero · Hello World</span>
+                    <span class="nav-preview-meta">Top of homepage</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="index.html#about">About</a>
+              <div class="nav-preview" aria-label="About preview">
+                <a class="nav-preview-item" href="index.html#about">
+                  <i class="fa-regular fa-user"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">About Section</span>
+                    <span class="nav-preview-meta">Profile · Strengths · Metrics</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="index.html#skills">Skills</a>
+              <div class="nav-preview" aria-label="Skills preview">
+                <a class="nav-preview-item" href="index.html#skills">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Skills Section</span>
+                    <span class="nav-preview-meta">Backend · Frontend · Tools</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="projects.html" data-page-link="projects">Projects</a>
+              <div class="nav-preview" aria-label="Projects preview">
+                <a class="nav-preview-item" href="index.html#featured-projects">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Featured Projects</span>
+                    <span class="nav-preview-meta">Signature builds · Pinned</span>
+                  </span>
+                </a>
+                <a class="nav-preview-item" href="index.html#projects">
+                  <i class="fa-solid fa-display"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Show Section View</span>
+                    <span class="nav-preview-meta">Carousel · More Projects</span>
+                  </span>
+                </a>
+                <a class="nav-preview-item" href="projects.html">
+                  <i class="fa-solid fa-table-columns"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Projects Page</span>
+                    <span class="nav-preview-meta">All projects · Archive</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="index.html#experience">Experience</a>
+              <div class="nav-preview" aria-label="Experience preview">
+                <a class="nav-preview-item" href="index.html#experience">
+                  <i class="fa-solid fa-route"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Experience Section</span>
+                    <span class="nav-preview-meta">Timeline · 3 roles</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="index.html#contact">Contact</a>
+              <div class="nav-preview" aria-label="Contact preview">
+                <a class="nav-preview-item" href="index.html#contact">
+                  <i class="fa-regular fa-envelope"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Contact Section</span>
+                    <span class="nav-preview-meta">Form · Email · Phone</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ PROJECTS ARCHIVE (news-portal layout) ============ -->
+  <section class="py-5 grid-section projects-archive" id="projects-archive">
+    <div class="container py-3">
+      <div class="reveal visible">
+        <span class="section-label">Work</span>
+        <h2 class="section-title">All Projects</h2>
+        <p class="section-brief">Every deliverable in one place — government platforms, enterprise ERP, POS systems, and commerce builds.</p>
+      </div>
+
+      <div class="row g-4 mt-3">
+
+        <!-- Main column: full details of the selected project -->
+        <div class="col-lg-8">
+          <article class="archive-main" id="archive-main">
+
+            <div class="archive-browser">
+              <div class="archive-browser-header">
+                <div class="archive-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="archive-url" id="archive-url">https://hotels.gov.bd</div>
+                <a href="#" class="archive-open" id="archive-open" target="_blank" rel="noopener" aria-label="Open project">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+              <div class="archive-viewport">
+                <img src="" alt="" id="archive-img" class="archive-img">
+              </div>
+            </div>
+
+            <div class="archive-body">
+              <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
+                <span class="archive-kicker" id="archive-kicker">01 / 10 · FEATURED WORK</span>
+                <span class="archive-type" id="archive-type">Government</span>
+              </div>
+              <h3 class="archive-title" id="archive-title">Government Hotel Management System</h3>
+              <div class="archive-stack" id="archive-stack" aria-label="Technologies used"></div>
+              <p class="archive-description" id="archive-description"></p>
+              <ul class="archive-highlights" id="archive-highlights"></ul>
+              <div class="d-flex gap-3 flex-wrap align-items-center">
+                <a href="#" class="btn-neon archive-visit" id="archive-visit" target="_blank" rel="noopener">
+                  Visit Project <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+                </a>
+                <a href="index.html#contact" class="btn-neon ghost">Discuss a Similar Build <i class="fa-solid fa-paper-plane ms-2"></i></a>
+                <a href="asset/cv/Prince%20Costa%2001882565483.pdf" download="Prince Costa - CV.pdf" class="btn-neon ghost cv-download-btn">Download CV <i class="fa-solid fa-file-arrow-down ms-2"></i></a>
+              </div>
+            </div>
+
+          </article>
+        </div>
+
+        <!-- Sidebar: all projects list, news-portal style -->
+        <aside class="col-lg-4">
+          <div class="archive-sidebar">
+            <div class="archive-sidebar-head">
+              <span><i class="fa-solid fa-layer-group me-2"></i>All Projects</span>
+              <span class="archive-sidebar-count" id="archive-count">06</span>
+            </div>
+
+            <nav class="archive-list" id="archive-list" aria-label="Project list">
+
+              <!-- Featured entry (jump back to homepage featured showcase) -->
+              <a class="archive-item archive-item-featured" href="index.html#featured-projects" data-featured="true">
+                <span class="archive-item-num"><i class="fa-solid fa-star"></i></span>
+                <img class="archive-item-img" src="asset/img/projects/hotels-gov.webp" alt="Featured Projects showcase">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Featured Projects</span>
+                  <span class="archive-item-meta">Pinned · Signature builds</span>
+                </span>
+                <i class="fa-solid fa-arrow-up-right-from-square archive-item-arrow"></i>
+              </a>
+
+              <button class="archive-item" type="button" data-index="0">
+                <span class="archive-item-num">01</span>
+                <img class="archive-item-img" src="asset/img/projects/hotels-gov.webp" alt="Government Hotel Management System">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Government Hotel Management System</span>
+                  <span class="archive-item-meta">Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="1">
+                <span class="archive-item-num">02</span>
+                <img class="archive-item-img" src="asset/img/projects/car-parts.webp" alt="Car Parts ERP Platform">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Car Parts ERP Platform</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="2">
+                <span class="archive-item-num">03</span>
+                <img class="archive-item-img" src="asset/img/projects/sky-wings.webp" alt="Aircraft Parts Accounting Platform">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Aircraft Parts Accounting Platform</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="3">
+                <span class="archive-item-num">04</span>
+                <img class="archive-item-img" src="asset/img/projects/ibusiness.webp" alt="E-commerce Inventory Management And POS Platform">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">E-commerce Inventory &amp; POS Platform</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="4">
+                <span class="archive-item-num">05</span>
+                <img class="archive-item-img" src="asset/img/projects/rigglotel.webp" alt="Rigglotel">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Rigglotel</span>
+                  <span class="archive-item-meta">>Laravel, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="5">
+                <span class="archive-item-num">06</span>
+                <img class="archive-item-img" src="asset/img/projects/rigglotech.webp" alt="Rigglotech">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Rigglotech</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="6">
+                <span class="archive-item-num">07</span>
+                <img class="archive-item-img" src="asset/img/projects/voip-forum.webp" alt="Voip-forum">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Voip-forum</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="7">
+                <span class="archive-item-num">08</span>
+                <img class="archive-item-img" src="asset/img/projects/toha-diamond.webp" alt="Toha-diamond">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Toha-diamond</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="8">
+                <span class="archive-item-num">09</span>
+                <img class="archive-item-img" src="asset/img/projects/visa-station.webp" alt="Visa-station">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Visa-station</span>
+                  <span class="archive-item-meta">>Laravel, MySQL, DataTable.js, jQuery, Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="9">
+                <span class="archive-item-num">10</span>
+                <img class="archive-item-img" src="asset/img/projects/lpk-edu.webp" alt="Lpk-education">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Lpk-education</span>
+                  <span class="archive-item-meta">>PHP,Bootstrap</span>
+                </span>
+              </button>
+
+              <button class="archive-item" type="button" data-index="10">
+                <span class="archive-item-num">11</span>
+                <img class="archive-item-img" src="asset/img/projects/rigglo-sim.webp" alt="Rigglosim">
+                <span class="archive-item-body">
+                  <span class="archive-item-title">Rigglosim</span>
+                  <span class="archive-item-meta">Shopify</span>
+                </span>
+              </button>
+
+            </nav>
+
+            <div class="archive-sidebar-foot">
+              <i class="fa-solid fa-terminal me-2"></i>More case studies on request.
+              <a href="asset/cv/Prince%20Costa%2001882565483.pdf" download="Prince Costa - CV.pdf" class="cv-download-btn d-inline-flex align-items-center gap-2 mt-2" style="text-decoration: none;">
+                <i class="fa-solid fa-file-arrow-down"></i> Download CV
+              </a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-identity">
+          <a class="footer-brand" href="index.html#home"><span>_ _{{ </span> Prince Costa <span> }}</span></a>
+          <p>Backend systems, thoughtful interfaces, and software that earns its place in the workflow.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <span class="footer-heading">Explore</span>
+          <a href="index.html#home">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#experience">Experience</a>
+          <a href="index.html#clients">Clients</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <div class="footer-connect">
+          <span class="footer-heading">Let’s connect</span>
+          <a class="footer-email" href="mailto:princecosta9@gmail.com">princecosta9@gmail.com <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          <div class="footer-socials">
+            <a href="https://wa.me/8801882565483" aria-label="WhatsApp Prince Costa"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:princecosta9@gmail.com" aria-label="Email Prince Costa"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/Prince-Costa" target="_blank" class="social-icon-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.facebook.com/PrinceProkobin" target="_blank" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/prince_p_costa" target="_blank" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/Prince-Costa" target="_blank" class="social-icon-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Prince Costa. Built with ❤️</p>
+      </div>
+    </div>
+  </footer>
+  
+  <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg class="progress-ring" viewBox="0 0 48 48" aria-hidden="true">
+      <circle class="progress-ring-track" cx="24" cy="24" r="22"></circle>
+      <circle class="progress-ring-bar" cx="24" cy="24" r="22"></circle>
+    </svg>
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- JS: vendor -->
+  <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
+  <!-- JS: site (shared + projects page) -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/projects.js"></script>
+</body>
+</html>

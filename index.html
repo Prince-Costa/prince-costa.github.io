@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prince Costa | PHP & Laravel Developer</title>
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/css/all.min.css" rel="stylesheet" />
+  <link href="assets/vendor/css/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/vendor/css/dseg.css" rel="stylesheet" />
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Restore saved theme before first paint (no flash of wrong theme)
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) { /* private mode */ }
+  </script>
+</head>
+<body>
+
+   <!-- VS Code-style floating navigation -->
+  <aside class="floating-sidebar is-hidden" id="floating-sidebar" aria-label="Quick navigation">
+    <div class="sidebar-topbar">
+      <span class="sidebar-folder"><i class="fa-regular fa-folder-open"></i> PORTFOLIO</span>
+    </div>
+
+    <div class="sidebar-profile">
+      <div class="sidebar-profile-ring"></div>
+      <img class="sidebar-profile-img"
+           src="asset/img/about.webp"
+           alt="Prince Costa — Profile" />
+    </div>
+
+    <!-- Edge handle: lives on the sidebar's right border, beside the avatar -->
+    <button class="sidebar-handle" type="button" aria-label="Show navigation" aria-controls="floating-sidebar" aria-expanded="false">
+      <i class="fa-solid fa-angles-right"></i>
+    </button>
+
+
+  
+    <div class="sidebar-file">
+      <i class="fa-solid fa-code"></i> <span id="sidebar-file-label">index.html</span>
+      <button class="theme-toggle sidebar-theme-toggle ms-2" type="button" aria-label="Toggle light / dark theme" title="Toggle theme">
+        <i class="fa-solid fa-moon m-0"></i>
+        <i class="fa-solid fa-sun m-0"></i>
+      </button>
+    </div>
+    <nav class="sidebar-nav" aria-label="Portfolio sections">
+      <div class="sidebar-item has-preview">
+        <a href="index.html" data-sidebar-link="home"><span class="sidebar-line">00</span><i class="fa-solid fa-house"></i> Home</a>
+        <div class="sidebar-preview" aria-label="Home preview">
+          <a class="nav-preview-item" href="index.html">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Hero · Hello World</span>
+              <span class="nav-preview-meta">Top of homepage</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#about" data-sidebar-link="about"><span class="sidebar-line">01</span><i class="fa-regular fa-user"></i> About</a>
+        <div class="sidebar-preview" aria-label="About preview">
+          <a class="nav-preview-item" href="index.html#about">
+            <i class="fa-regular fa-user"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">About Section</span>
+              <span class="nav-preview-meta">Profile · Strengths · Metrics</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#skills" data-sidebar-link="skills"><span class="sidebar-line">02</span><i class="fa-solid fa-layer-group"></i> Skills</a>
+        <div class="sidebar-preview" aria-label="Skills preview">
+          <a class="nav-preview-item" href="index.html#skills">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Skills Section</span>
+              <span class="nav-preview-meta">Backend · Frontend · Tools</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="projects.html" data-sidebar-link="projects"><span class="sidebar-line">03</span><i class="fa-solid fa-briefcase"></i> Projects</a>
+        <div class="sidebar-preview" aria-label="Projects preview">
+          <a class="nav-preview-item" href="index.html#featured-projects">
+            <i class="fa-solid fa-star"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Featured Projects</span>
+              <span class="nav-preview-meta">Signature builds · Pinned</span>
+            </span>
+          </a>
+          <a class="nav-preview-item" href="index.html#projects">
+            <i class="fa-solid fa-display"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">More Projects</span>
+              <span class="nav-preview-meta">Carousel · More Projects</span>
+            </span>
+          </a>
+          <a class="nav-preview-item" href="projects.html">
+            <i class="fa-solid fa-table-columns"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Projects Page</span>
+              <span class="nav-preview-meta">All projects · Page</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="#experience" data-sidebar-link="experience"><span class="sidebar-line">05</span><i class="fa-solid fa-route"></i> Experience</a>
+        <div class="sidebar-preview" aria-label="Experience preview">
+          <a class="nav-preview-item" href="#experience">
+            <i class="fa-solid fa-route"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Experience Section</span>
+              <span class="nav-preview-meta">Timeline · 3 roles</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#clients" data-sidebar-link="clients"><span class="sidebar-line">04</span><i class="fa-solid fa-handshake"></i> Clients</a>
+        <div class="sidebar-preview" aria-label="Clients preview">
+          <a class="nav-preview-item" href="index.html#clients">
+            <i class="fa-solid fa-handshake"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Clients Section</span>
+              <span class="nav-preview-meta">8 partners · Floating cards</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="sidebar-item has-preview">
+        <a href="index.html#contact" data-sidebar-link="contact"><span class="sidebar-line">06</span><i class="fa-regular fa-envelope"></i> Contact</a>
+        <div class="sidebar-preview" aria-label="Contact preview">
+          <a class="nav-preview-item" href="index.html#contact">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="nav-preview-body">
+              <span class="nav-preview-title">Contact Section</span>
+              <span class="nav-preview-meta">Form · Email · Phone</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="sidebar-footer"><span class="sidebar-dot"></span> online <span>main*</span></div>
+  </aside>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <span style="color: var(--accent-cyan);">_ _{{ </span>Prince Costa<span style="color: var(--accent-cyan);"> }}</span> 
+      </a>
+      <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item me-1">
+            <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme" title="Toggle theme">
+              <i class="fa-solid fa-moon"></i>
+              <i class="fa-solid fa-sun"></i>
+            </button>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#" data-page-link="home">Home</a>
+              <div class="nav-preview" aria-label="Home preview">
+                <a class="nav-preview-item" href="#">
+                  <i class="fa-solid fa-user-astronaut"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Hero · Hello World</span>
+                    <span class="nav-preview-meta">Top of homepage</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#about">About</a>
+              <div class="nav-preview" aria-label="About preview">
+                <a class="nav-preview-item" href="#about">
+                  <i class="fa-regular fa-user"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">About Section</span>
+                    <span class="nav-preview-meta">Profile · Strengths · Metrics</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#skills">Skills</a>
+              <div class="nav-preview" aria-label="Skills preview">
+                <a class="nav-preview-item" href="#skills">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Skills Section</span>
+                    <span class="nav-preview-meta">Backend · Frontend · Tools</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="projects.html" data-page-link="projects">Projects</a>
+              <div class="nav-preview" aria-label="Projects preview">
+                <a class="nav-preview-item" href="#featured-projects">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Featured Projects</span>
+                    <span class="nav-preview-meta">Signature builds · Pinned</span>
+                  </span>
+                </a>
+                <a class="nav-preview-item" href="#projects">
+                  <i class="fa-solid fa-display"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Show More Projects</span>
+                    <span class="nav-preview-meta">Carousel · More Projects</span>
+                  </span>
+                </a>
+                <a class="nav-preview-item" href="projects.html">
+                  <i class="fa-solid fa-table-columns"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Projects Page</span>
+                    <span class="nav-preview-meta">All projects · Archive</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#experience">Experience</a>
+              <div class="nav-preview" aria-label="Experience preview">
+                <a class="nav-preview-item" href="#experience">
+                  <i class="fa-solid fa-route"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Experience Section</span>
+                    <span class="nav-preview-meta">Timeline · 3 roles</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#clients">Clients</a>
+              <div class="nav-preview" aria-label="Clients preview">
+                <a class="nav-preview-item" href="#clients">
+                  <i class="fa-solid fa-handshake"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Clients Section</span>
+                    <span class="nav-preview-meta">8 partners · Floating cards</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-preview-wrap">
+              <a class="nav-link" href="#contact">Contact</a>
+              <div class="nav-preview" aria-label="Contact preview">
+                <a class="nav-preview-item" href="#contact">
+                  <i class="fa-regular fa-envelope"></i>
+                  <span class="nav-preview-body">
+                    <span class="nav-preview-title">Contact Section</span>
+                    <span class="nav-preview-meta">Form · Email · Phone</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero-section" id="home">
+    <div class="hero-grid"></div>
+    <div class="hero-glow one"></div>
+    <div class="hero-glow two"></div>
+
+    <div class="container position-relative">
+      <div class="row align-items-center gy-5 hero-border">
+        <!-- Left: typed title + CTAs -->
+        <div class="col-lg-5 text-center text-lg-start">
+          <span class="hero-intro">&lt; Hello World, I am /&gt;</span>
+          <h1 class="hero-name mt-2">Prince Costa</h1>
+          <p class="hero-desc mt-3 mb-4">
+            Backend-focused software engineer with 3+ years building ERP platforms, government-grade
+            booking systems, POS &amp; accounting software, and scalable CMS solutions.
+          </p>
+          <h2 class="hero-typed mt-2">
+            <span id="typed-title"></span>
+          </h2>
+          
+          <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap mt-5">
+            <a href="#projects" class="btn-neon">View Projects <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="#contact" class="btn-neon ghost">Contact Me <i class="fa-solid fa-paper-plane ms-2"></i></a>
+            <a href="asset/cv/Prince%20Costa%2001882565483.pdf" download="Prince Costa - CV.pdf" class="btn-neon ghost cv-download-btn">Download CV <i class="fa-solid fa-file-arrow-down ms-2"></i></a>
+          </div>
+        </div>
+
+        <!-- Right: floating avatar -->
+        <div class="col-lg-7">
+          <img class="img-fluid" src="asset/img/hero-1.webp" alt="Prince Costa — Profile">
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+   <!-- ============ About ============ -->
+  <section class="py-5 grid-section" id="about">
+    <div class="container py-3">
+      <div class="reveal">
+        <span class="section-label">01. Me</span>
+        <h2 class="section-title">About</h2>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-5">
+          <div class="avatar-wrap">
+            <div class="avatar-ring"></div>
+            <img class="avatar-img"
+                 src="asset/img/about.webp"
+                 alt="Prince Costa — Profile" />
+          </div>
+          
+          <div class="mt-5 d-flex gap-1 justify-content-center">
+              <a href="#contact" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="Contact Me"><i class="fa-solid fa-paper-plane fs-2x"></i></a>
+              <a href="https://wa.me/8801882565483" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="WhatsApp Prince Costa"><i class="fa-brands fa-whatsapp fs-2x"></i></a>
+              <a href="mailto:princecosta9@gmail.com" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="Email Prince Costa"><i class="fa-solid fa-envelope fs-2x"></i></a>
+              <a href="https://github.com/Prince-Costa" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="GitHub"><i class="fa-brands fa-github fs-2x"></i></a>
+              <a href="https://www.facebook.com/PrinceProkobin" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="Facebook"><i class="fa-brands fa-facebook-f fs-2x"></i></a>
+              <a href="https://www.instagram.com/prince_p_costa" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="Instagram"><i class="fa-brands fa-instagram fs-2x"></i></a>
+              <a href="https://www.linkedin.com/in/Prince-Costa" target="_blank" class="social-icon-btn contact-pill p-3 rounded" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in fs-2x"></i></a>
+            </div>
+
+            <div class="mt-4 text-center">
+            <a href="asset/cv/Prince%20Costa%2001882565483.pdf" download="Prince Costa - CV.pdf" class="btn-neon ghost cv-download-btn">Download CV <i class="fa-solid fa-file-arrow-down ms-2"></i></a>
+          </div>
+        </div>
+
+        <div class="col-md-7 about-copy mt-5">
+          <span class="about-kicker">BACKEND ENGINEERING · PRODUCT THINKING</span>
+          <h3 class="about-heading">Building scalable backend systems and enterprise solutions.</h3>
+          <p class="about-lead">
+            I'm a software engineer specializing in backend architecture and full-stack product development. Over the past three years, I've engineered mission-critical systems ranging from government hotel management platforms to enterprise ERP solutions, POS systems, Portfolio web sites and scalable CMS implementations.
+          </p>
+          <p class="about-paragraph">
+            My focus is on writing clean, maintainable code that solves real business problems. I thrive in collaborative environments where I can mentor junior developers, establish coding standards, and contribute to long-term architectural decisions.
+          </p>
+          
+          <div class="strengths-accordion mb-4" id="strengthsAccordion">
+            <div class="accordion strength-acc">
+              <!-- Laravel & PHP -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button strength-acc-btn" type="button" data-bs-toggle="collapse" data-bs-target="#strength-laravel" aria-expanded="true" aria-controls="strength-laravel">
+                    <i class="fa-solid fa-check strength-acc-icon"></i>
+                    <span class="strength-acc-title">Laravel &amp; PHP</span>
+                    <span class="strength-acc-meta">3+ yrs</span> <i class="fa-solid fa-chevron-right acc-chevron"></i>
+                  </button>
+                </h3>
+                <div id="strength-laravel" class="accordion-collapse collapse show" data-bs-parent="#strengthsAccordion">
+                  <div class="accordion-body strength-acc-body">
+                    <p>Core stack for production systems — government hotel management, ERP, and POS platforms built on Laravel with queues, scheduled jobs, and policy-based authorization.</p>
+                    <ul class="strength-acc-tags">
+                      <li>Laravel</li>
+                      <li>Queues &amp; Jobs</li>
+                      <li>Eloquent ORM</li>
+                      <li>Artisan CLI</li>
+                      <li>Policy / Gate RBAC</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Database Design -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button strength-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#strength-db" aria-expanded="false" aria-controls="strength-db">
+                    <i class="fa-solid fa-check strength-acc-icon"></i>
+                    <span class="strength-acc-title">Database Design</span>
+                    <span class="strength-acc-meta">MySQL</span> <i class="fa-solid fa-chevron-right acc-chevron"></i>
+                  </button>
+                </h3>
+                <div id="strength-db" class="accordion-collapse collapse" data-bs-parent="#strengthsAccordion">
+                  <div class="accordion-body strength-acc-body">
+                    <p>Normalized schemas for inventory, bookings, and accounting domains — optimized for aggregate reporting with indexed queries that stay fast as datasets grow.</p>
+                    <ul class="strength-acc-tags">
+                      <li>Schema Normalization</li>
+                      <li>Query Optimization</li>
+                      <li>Index Strategy</li>
+                      <li>Reporting Views</li>
+                      <li>Data Migrations</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- API Architecture -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button strength-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#strength-api" aria-expanded="false" aria-controls="strength-api">
+                    <i class="fa-solid fa-check strength-acc-icon"></i>
+                    <span class="strength-acc-title">API Architecture</span>
+                    <span class="strength-acc-meta">REST</span> <i class="fa-solid fa-chevron-right acc-chevron"></i>
+                  </button>
+                </h3>
+                <div id="strength-api" class="accordion-collapse collapse" data-bs-parent="#strengthsAccordion">
+                  <div class="accordion-body strength-acc-body">
+                    <p>Versioned REST APIs for web and POS clients — consistent error contracts, token auth, and response shapes designed around how frontends actually consume them.</p>
+                    <ul class="strength-acc-tags">
+                      <li>RESTful Design</li>
+                      <li>Sanctum Auth</li>
+                      <li>Versioning</li>
+                      <li>Rate Limiting</li>
+                      <li>Form Requests</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- System Optimization -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button strength-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#strength-opt" aria-expanded="false" aria-controls="strength-opt">
+                    <i class="fa-solid fa-check strength-acc-icon"></i>
+                    <span class="strength-acc-title">System Optimization</span>
+                    <span class="strength-acc-meta">Performance</span> <i class="fa-solid fa-chevron-right acc-chevron"></i>
+                  </button>
+                </h3>
+                <div id="strength-opt" class="accordion-collapse collapse" data-bs-parent="#strengthsAccordion">
+                  <div class="accordion-body strength-acc-body">
+                    <p>Keeping operational systems fast under load — query profiling, cache layers, and batch jobs tuned so daily-sale and stock reports render instantly.</p>
+                    <ul class="strength-acc-tags">
+                      <li>Query Profiling</li>
+                      <li>Cache Layers</li>
+                      <li>Batch Processing</li>
+                      <li>Asset Pipelines</li>
+                      <li>Load Testing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modern Responsive Design -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button strength-acc-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#strength-rwd" aria-expanded="false" aria-controls="strength-rwd">
+                    <i class="fa-solid fa-check strength-acc-icon"></i>
+                    <span class="strength-acc-title">Modern Responsive Design</span>
+                    <span class="strength-acc-meta">UI/UX</span> <i class="fa-solid fa-chevron-right acc-chevron"></i>
+                  </button>
+                </h3>
+                <div id="strength-rwd" class="accordion-collapse collapse" data-bs-parent="#strengthsAccordion">
+                  <div class="accordion-body strength-acc-body">
+                    <p>Interfaces that adapt seamlessly from POS counters to mobile — mobile-first layouts, fluid grids, and accessible components that stay crisp on every screen size.</p>
+                    <ul class="strength-acc-tags">
+                      <li>Mobile-Responsive Design</li>
+                      <li>Next.js</li>
+                      <li>Bootstrap 5</li>
+                      <li>Tailwind CSS</li>
+                      <li>HTML5</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-metrics">
+            <div><strong><span class="metric-count" data-target="3">00</span><span class="metric-suffix">+</span></strong><span>Years building</span></div>
+            <div><strong><span class="metric-count" data-target="15">00</span><span class="metric-suffix">+</span></strong><span>Projects shipped</span></div>
+            <div><strong><span class="metric-count" data-target="1">00</span></strong><span>Clear focus</span></div>
+            <div></div>
+          </div>
+          <p class="small mb-0 d-none">
+            When I'm not coding, I'm exploring new technologies, contributing to open-source projects, or mentoring aspiring developers in the tech community.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ============ SKILLS ============ -->
+  <section class="py-5 grid-section" id="skills">
+    <div class="container py-3">
+      <div class="reveal">
+        <span class="section-label">02. Arsenal</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-brief">A battle-tested toolkit for building secure backends, dynamic dashboards, and maintainable full-stack products — refined across government, enterprise, and startup environments.</p>
+      </div>
+      <div class="skills-tabs" data-skills-tabs>
+        <div class="skills-tab-list" role="tablist" aria-label="Skill categories">
+          <button class="skills-tab active" id="tab-backend" type="button" role="tab" aria-selected="true" aria-controls="panel-backend" data-skill-tab="backend">
+            <i class="fa-solid fa-server"></i><span>Backend</span>
+          </button>
+          <button class="skills-tab" id="tab-frontend" type="button" role="tab" aria-selected="false" aria-controls="panel-frontend" data-skill-tab="frontend" tabindex="-1">
+            <i class="fa-solid fa-window-maximize"></i><span>Frontend</span>
+          </button>
+          <button class="skills-tab" id="tab-tools" type="button" role="tab" aria-selected="false" aria-controls="panel-tools" data-skill-tab="tools" tabindex="-1">
+            <i class="fa-solid fa-cubes"></i><span>CMS &amp; Tools</span>
+          </button>
+        </div>
+        <div class="skills-panels">
+          <div class="skills-panel active" id="panel-backend" role="tabpanel" aria-labelledby="tab-backend" data-skill-panel="backend">
+            <div class="skill-card-grid">
+              <article class="skill-card"><i class="fa-brands fa-php"></i><h3>PHP</h3><p>Reliable server-side foundations for business logic, integrations, and maintainable web applications.</p><span>Core language</span></article>
+              <article class="skill-card"><i class="fa-brands fa-laravel"></i><h3>Laravel</h3><p>Production-ready MVC applications with queues, authentication, APIs, and clean domain workflows.</p><span>Primary framework</span></article>
+              <article class="skill-card"><i class="fa-solid fa-fire-flame-curved"></i><h3>CodeIgniter</h3><p>Focused, lightweight management tools and internal applications with fast delivery cycles.</p><span>Web framework</span></article>
+              <article class="skill-card"><i class="fa-brands fa-java"></i><h3>Spring Boot</h3><p>Structured Java services designed for robust APIs and enterprise-scale backend systems.</p><span>Enterprise backend</span></article>
+              <article class="skill-card"><i class="fa-solid fa-database"></i><h3>MySQL</h3><p>Normalized schemas, query optimization, reporting data, and dependable relational storage.</p><span>Data layer</span></article>
+            </div>
+          </div>
+          <div class="skills-panel" id="panel-frontend" role="tabpanel" aria-labelledby="tab-frontend" data-skill-panel="frontend" hidden>
+            <div class="skill-card-grid">
+              <article class="skill-card"><i class="fa-brands fa-square-js"></i><h3>JavaScript</h3><p>Responsive, accessible interactions that make complex application workflows feel immediate.</p><span>Interaction layer</span></article>
+              <article class="skill-card"><i class="fa-brands fa-n"></i><h3>Next.js</h3><p>Composable interfaces for data-rich products, dashboards, and reusable product systems.</p><span>UI library</span></article>
+              <article class="skill-card"><i class="fa-solid fa-bolt"></i><h3>jQuery</h3><p>Practical enhancement of established applications, forms, tables, and admin workflows.</p><span>Legacy-friendly UI</span></article>
+              <article class="skill-card"><i class="fa-brands fa-bootstrap"></i><h3>Bootstrap</h3><p>Consistent responsive layouts with accessible components and fast, dependable implementation.</p><span>Layout system</span></article>
+              <article class="skill-card"><i class="fa-solid fa-wind"></i><h3>Tailwind CSS</h3><p>Purposeful interface styling with reusable utility patterns and precise responsive control.</p><span>Styling system</span></article>
+              <article class="skill-card"><i class="fa-solid fa-images"></i><h3>Owl Carousel</h3><p>Touch-enabled responsive sliders for product showcases, galleries, and featured content sections.</p><span>Carousel plugin</span></article>
+              <article class="skill-card"><i class="fa-solid fa-sliders"></i><h3>Slick</h3><p>Flexible jQuery carousels with lazy loading, breakpoints, and smooth adaptive scrolling.</p><span>Carousel plugin</span></article>
+              <article class="skill-card"><i class="fa-solid fa-arrows-left-right"></i><h3>Swiper</h3><p>Modern touch sliders with native-feel gestures, parallax effects, and modular navigation.</p><span>Touch slider</span></article>
+            </div>
+          </div>
+          <div class="skills-panel" id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" data-skill-panel="tools" hidden>
+            <div class="skill-card-grid">
+              <article class="skill-card"><i class="fa-brands fa-wordpress"></i><h3>WordPress</h3><p>Flexible CMS builds, custom themes, and content workflows shaped around client teams.</p><span>Content platform</span></article>
+              <article class="skill-card"><i class="fa-brands fa-shopify"></i><h3>Shopify</h3><p>Commerce storefronts and practical integrations that support day-to-day retail operations.</p><span>Commerce platform</span></article>
+              <article class="skill-card"><i class="fa-solid fa-table-columns"></i><h3>DataTables</h3><p>Searchable, sortable, exportable data views for operational dashboards and reporting.</p><span>Data interface</span></article>
+              <article class="skill-card"><i class="fa-brands fa-git-alt"></i><h3>Git</h3><p>Traceable collaboration, clean branches, and dependable delivery across product teams.</p><span>Version control</span></article>
+              <article class="skill-card"><i class="fa-solid fa-server"></i><h3>One.com</h3><p>Domain management, shared hosting deployments, and reliable email setup for client websites.</p><span>Web hosting</span></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ Featured PROJECTS ============ -->
+  <div class="featured-projects-component my-5" id="featured-projects">
+    <div class="container h-100">
+        <div class="reveal">
+          <span class="section-label">03. Featured Work</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-brief"> Selected deliverables spanning government hotel management, automotive ERP, and POS platforms — systems built to run daily operations at scale.</p>         
+        </div>
+        <div class="row g-4 h-100 align-items-center">
+            
+            <!-- Left Column: Details (4 Col) — desktop/laptop only -->
+            <div class="col-lg-4 d-none d-lg-block">
+              <div class="projects-info-wrapper project-detail-panel">
+                <span class="active-project-kicker">01 / 03 · FEATURED WORK</span>
+                <h3 class="active-project-title" id="active-project-title">Government Hotel Management System</h3>
+                <p class="active-project-description" id="active-project-description">
+                  Core booking engine and administrative management modules.
+                </p>
+                <div class="active-project-stack" id="active-project-stack" aria-label="Technologies used">
+                  <span class="tech-badge">Laravel</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">DataTable.js</span>
+                  <span class="tech-badge">jQuery</span>
+                  <span class="tech-badge">Bootstrap</span>
+                </div>
+                <a class="active-project-link" id="active-project-link" href="https://hotels.gov.bd" target="_blank" rel="noopener">
+                  Explore project <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <div class="mt-4">
+                  <a href="projects.html" class="btn-neon fp-visit-btn">Visit Projects <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Vertical Slider Window (8 Col) — desktop/laptop only -->
+            <div class="col-lg-8 h-100 py-5 d-none d-lg-block">
+                <div class="browser-window-frame">
+                    <!-- Browser Top Header Bar -->
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="browser-url" id="active-project-url"></div>
+                        <a href="#" class="browser-action-icon" aria-label="Visit Site" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    
+                    <!-- Vertical Image Track -->
+                    <div class="slider-viewport">
+                        <div class="vertical-slider-track">
+                            
+                            <!-- Slide 1 -->
+                            <div class="project-slide" data-url="https://hotels.gov.bd" data-description="Full booking engine with room inventory, guest check-in/out, billing and government-level administrative reporting — built to run daily operations across multiple properties.">
+                                <img src="asset/img/porjotan.png" alt="Government Hotel Management System">
+                                <div class="slide-overlay-info">
+                                    <div class="tech-stack mb-2">
+                                        <span class="tech-badge">Laravel</span>
+                                        <span class="tech-badge">MySQL</span>
+                                        <span class="tech-badge">DataTable.js</span>
+                                        <span class="tech-badge">jQuery</span>
+                                        <span class="tech-badge">Bootstrap</span> 
+                                    </div>
+                                    <h3 class="project-name">Government Hotel Management System</h3>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="project-slide" data-url="" data-description="Automotive and aviation stock management with low-stock alerts, supplier tracking, barcode flows and dynamic PDF reporting for parts and inventory control.">
+                                <img src="asset/img/sky-wings-parts.webp" alt="Car & Aircraft ERP Platform">
+                                <div class="slide-overlay-info">
+                                    <div class="tech-stack mb-2">
+                                        <span class="tech-badge">Laravel</span>
+                                        <span class="tech-badge">MySQL</span>
+                                        <span class="tech-badge">DataTable.js</span>
+                                        <span class="tech-badge">jQuery</span>
+                                        <span class="tech-badge">Bootstrap</span>
+                                    </div>
+                                    <h3 class="project-name">Car & Aircraft ERP Platform</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablet & Mobile: testimonial-style swiper (media card over content card) -->
+            <div class="col-12 d-lg-none fp-mobile-swiper-wrap">
+              <div class="swiper fpMobileSwiper">
+                <div class="swiper-wrapper">
+                  <!-- slides duplicated from .project-slide data by index.js -->
+                </div>
+                <div class="swiper-pagination fp-mobile-pagination"></div>
+              </div>
+              <div class="text-center mt-3">
+                <a href="projects.html" class="btn-neon fp-visit-btn">Visit Projects <i class="fa-solid fa-arrow-right ms-2"></i></a>
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <!-- ============ More PROJECTS ============ -->
+  <section class="projects-section grid-section py-5" id="projects">
+    <div class="container py-3">
+      <div class="reveal">
+        <span class="section-label">04. Work</span>
+        <h2 class="section-title">More Projects</h2>
+        <p class="section-brief">Selected deliverables spanning government hotel management, automotive ERP, POS systems and Portfolio web site with content modifications and admin panel built to run daily operations at scale.</p>
+        <div class="text-center mt-4">
+          <a href="projects.html" class="btn-neon projects-visit-btn">Visit Projects <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
+        </div>
+      </div>
+
+      <div class="swiper projectSwiper reveal pt-5">
+        <div class="swiper-wrapper">
+
+          <!-- Project 1: Government Hotel System -->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=0" tabindex="0" role="link" aria-label="View Government Hotel Management System details">
+              <img class="cover-card-img" src="asset/img/projects/hotels-gov.webp" alt="Government Hotel System dashboard" />
+              <a class="shot-link" href="https://hotels.gov.bd" target="_blank" rel="noopener noreferrer" aria-label="Open Government Hotel Management System live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">hotels.gov.bd</span>
+                <h3 class="cover-title"><i class="fa-solid fa-hotel"></i>Government Hotel Management System</h3>
+                <p class="cover-text">Core booking engine, administrative management modules, and user workflows for a national hotel network.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://hotels.gov.bd" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 2: Car Parts ERP -->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=1" tabindex="0" role="link" aria-label="View Car Parts ERP Platform details">
+              <img class="cover-card-img" src="asset/img/projects/car-parts.webp" alt="Car Parts ERP stock tracking" />
+              <a class="shot-link shot-link--locked" href="#" aria-label="Car Parts ERP Platform is a private project">
+                <i class="fa-solid fa-lock"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">private.internal</span>
+                <h3 class="cover-title"><i class="fa-solid fa-boxes-stacked"></i>Car Parts ERP Platform</h3>
+                <p class="cover-text">Stock tracking with low-stock alerts, dynamic Excel/PDF reporting, and full checkout workflows for parts sales.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta cover-cta--disabled" href="#" aria-disabled="true" tabindex="-1"><i class="fa-solid fa-lock"></i> Private</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 3: POS & Accounting -->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=2" tabindex="0" role="link" aria-label="View Aircraft Parts Accounting Platform details">
+              <img class="cover-card-img" src="asset/img/projects/sky-wings.webp" alt="Aircraft Parts Accounting platform" />
+              <a class="shot-link shot-link--locked" href="#" aria-label="Aircraft Parts Accounting Platform is a private project">
+                <i class="fa-solid fa-lock"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">private.internal</span>
+                <h3 class="cover-title"><i class="fa-solid fa-cash-register"></i>Aircraft Parts Accounting Platform</h3>
+                <p class="cover-text">ERP software with RBAC security, detailed financial reporting, and itemized account management.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta cover-cta--disabled" href="#" aria-disabled="true" tabindex="-1"><i class="fa-solid fa-lock"></i> Private</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 4: ibusiness inventory management and pos -->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=3" tabindex="0" role="link" aria-label="View E-commerce Inventory and POS Platform details">
+              <img class="cover-card-img" src="asset/img/projects/ibusiness.webp" alt="ibusiness platform platform" />
+              <a class="shot-link shot-link--locked" href="#" aria-label="E-commerce Inventory and POS Platform is a private project">
+                <i class="fa-solid fa-lock"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">private.internal</span>
+                <h3 class="cover-title"><i class="fa-solid fa-cash-register"></i>E-commerce inventory management And POS  Platform</h3>
+                <p class="cover-text">Multi vendor supported POS software with RBAC security, detailed financial reporting, and itemized account management. </p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta cover-cta--disabled" href="#" aria-disabled="true" tabindex="-1"><i class="fa-solid fa-lock"></i> Private</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 5: porfolio website rigglotel-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=4" tabindex="0" role="link" aria-label="View Rigglotel details">
+              <img class="cover-card-img" src="asset/img/projects/rigglotel.webp" alt="rigglotel platform" />
+              <a class="shot-link" href="https://www.rigglotel.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Rigglotel live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">rigglotel.com</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Rigglotel</h3>
+                <p class="cover-text">RiggloTel is a trusted global communication solutions provider. We connect telecom carriers, aggregators, and enterprise clients with direct voice routing, low-latency infrastructure, and competitive pricing across 160+ international destinations.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://www.rigglotel.com/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 6: porfolio website rigglotech-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=5" tabindex="0" role="link" aria-label="View Rigglotech details">
+              <img class="cover-card-img" src="asset/img/projects/rigglotech.webp" alt="rigglotech platform" />
+              <a class="shot-link" href="https://www.rigglotech.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Rigglotech live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">rigglotech.com</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Rigglotech</h3>
+                <p class="cover-text">A comprehensive showcase of Rigglotech’s services. This platform includes a robust admin control panel designed for seamless management of projects, client relations, employee workflows, and dynamic website content.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://www.rigglotech.com/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 7: viop fourm -->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=6" tabindex="0" role="link" aria-label="View Voip-forum details">
+              <img class="cover-card-img" src="asset/img/projects/voip-forum.webp" alt="voip-forum platform platform" />
+              <a class="shot-link" href="https://voipforum.net/" target="_blank" rel="noopener noreferrer" aria-label="Open Voip-forum live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">voipforum.net</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Voip-forum</h3>
+                <p class="cover-text">VoIP Forum serves as a dedicated B2B networking portal for the telecommunications industry. It enables carriers and aggregators to buy and sell wholesale VoIP routes, discuss IP telephony hardware and software solutions, and establish trusted business partnerships globally.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://voipforum.net/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 8: porfolio website toha ltd-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=7" tabindex="0" role="link" aria-label="View Toha-diamond details">
+              <img class="cover-card-img" src="asset/img/projects/toha-diamond.webp" alt="toha-diamond platform platform" />
+              <a class="shot-link" href="https://www.tohaltd.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Toha-diamond live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">tohaltd.com</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Toha-diamond</h3>
+                <p class="cover-text">Empowering Saudi Arabia's infrastructure and development. Toha Diamond Construction provides end-to-end building construction, MEP installation, commercial cleaning, and skilled manpower supply to ensure efficient project execution and reliable facility management.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://www.tohaltd.com/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 9: porfolio website visa station-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=8" tabindex="0" role="link" aria-label="View Visa-station details">
+              <img class="cover-card-img" src="asset/img/projects/visa-station.webp" alt="visa-station platform" />
+              <a class="shot-link" href="https://visastation.co.uk/" target="_blank" rel="noopener noreferrer" aria-label="Open Visa-station live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Laravel</span>
+                  <span class="shot-badge">MySQL</span>
+                  <span class="shot-badge">DataTable.js</span>
+                  <span class="shot-badge">jQuery</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">visastation.co.uk</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Visa-station</h3>
+                <p class="cover-text">Visa Station offers comprehensive UK legal and immigration consultancy services. From navigating student and skilled worker visas to handling complex family reunification, Indefinite Leave to Remain (ILR), and British citizenship applications, our specialist advisors guide individuals and corporate clients through every step of the Home Office application process.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://visastation.co.uk/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 10: porfolio website lpk education-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=9" tabindex="0" role="link" aria-label="View Lpk-education details">
+              <img class="cover-card-img" src="asset/img/projects/lpk-edu.webp" alt="lpk-education platform" />
+              <a class="shot-link" href="https://lpkeducation.one/" target="_blank" rel="noopener noreferrer" aria-label="Open Lpk-education live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">PHP</span>
+                  <span class="shot-badge">Bootstrap</span>
+                </div>
+                <span class="cover-url">lpkeducation.one</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Lpk-education</h3>
+                <p class="cover-text">Empowering career growth through practical tech and vocational training. LPK Education offers hands-on courses in web development, graphics design, digital marketing, and IT skills designed to build job-ready expertise.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://lpkeducation.one/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 11: porfolio website rigglosim-->
+          <div class="swiper-slide">
+            <article class="cover-card" data-project-url="projects.html?project=10" tabindex="0" role="link" aria-label="View Rigglosim details">
+              <img class="cover-card-img" src="asset/img/projects/rigglo-sim.webp" alt="rigglosim platform" />
+              <a class="shot-link" href="https://rigglosim.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Rigglosim live project (new tab)">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <div class="cover-info">
+                <div class="cover-badges">
+                  <span class="shot-badge">Shopify</span>
+                </div>
+                <span class="cover-url">rigglosim.com</span>
+                <h3 class="cover-title"><i class="fa-solid fa-globe"></i>Rigglosim</h3>
+                <p class="cover-text">Global eSIM & Travel Data Solutions. Connect instantly with local data plans across the globe without expensive roaming fees.</p>
+                <div class="mt-2 text-center">
+                  <a class="cover-cta" href="https://rigglosim.com/" target="_blank" rel="noopener noreferrer">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </div>
+            </article>
+          </div><!-- /.swiper-wrapper -->
+      </div>
+
+      <!-- Unified bottom control bar: arrows at the far edges + numbered pages -->
+      <div class="project-controls" aria-label="Carousel navigation">
+        <div class="project-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Img Section — 3-slide carousel -->
+  <section class="container grid-section py-5 showcase-carousel-wrap" style="opacity: 0.9;">
+    <div class="swiper showcaseSwiper">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <img src="asset/img/section.jpg" alt="Workspace overview" class="showcase-img">
+          <div class="showcase-caption">
+            <span class="showcase-caption-kicker">01 · Workspace</span>
+            <p class="showcase-caption-text mb-0">Where backend systems get designed, debugged, and shipped.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80" alt="Code close-up" class="showcase-img">
+          <div class="showcase-caption">
+            <span class="showcase-caption-kicker">02 · Craft</span>
+            <p class="showcase-caption-text mb-0">Clean, maintainable code that solves real business problems.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1600&q=80" alt="Team collaboration" class="showcase-img">
+          <div class="showcase-caption">
+            <span class="showcase-caption-kicker">03 · Collaboration</span>
+            <p class="showcase-caption-text mb-0">Mentoring developers and contributing to long-term architecture.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination showcase-pagination"></div>
+    </div>
+  </section>
+
+ 
+  <!-- ============ EXPERIENCE TIMELINE ============ -->
+  <section class="py-5 grid-section" id="experience">
+    <div class="container py-3">
+      <div class="reveal">
+        <span class="section-label">05. Journey</span>
+        <h2 class="section-title">Experience Timeline</h2>
+        <p class="section-brief">Three years of shipping production software — from startup product squads to corporate consultancy and government-grade engineering.</p>
+      </div>
+
+      <div class="timeline reveal">
+
+        <div class="timeline-node">
+          <div class="timeline-dot active"></div>
+          <div class="timeline-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+              <h3 class="h6 text-white fw-bold mb-0">Software Engineer — Net Planet Soft And Engineering</h3>
+              <span class="timeline-badge badge-live"><i class="fa-solid fa-circle me-1" style="font-size: 0.5rem;"></i>ACTIVE · AUG 2025 – PRESENT</span>
+            </div>
+            <p class="small mb-2" style="color: var(--accent-blue);"><i class="fa-solid fa-link me-1"></i>netplanetsoft.com · ERP &amp; Government Software</p>
+            <ul>
+              <li>Developing Laravel-based government software platforms and ERP applications.</li>
+              <li>Implementing stock tracking, low-stock notifications, and PDF/Excel export reporting.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+              <h3 class="h6 text-white fw-bold mb-0">Software Engineer — Rigglotech</h3>
+              <span class="timeline-badge badge-corp">CORPORATE SOLUTIONS · NOV 2024 – AUG 2025</span>
+            </div>
+            <p class="small mb-2" style="color: var(--accent-blue);"><i class="fa-solid fa-link me-1"></i>rigglotech.com · Ecommerce &amp; Web Consulting</p>
+            <ul>
+              <li>Architected web solutions using Laravel, WordPress, and Shopify.</li>
+              <li>Delivered development and hosting consultancy across corporate and telecom business systems.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+              <h3 class="h6 text-white fw-bold mb-0">Junior Software Engineer — eNSPIRED ASIA</h3>
+              <span class="timeline-badge badge-prod">PRODUCT DEVELOPMENT · MAR 2022 – OCT 2024</span>
+            </div>
+            <p class="small mb-2" style="color: var(--accent-blue);"><i class="fa-solid fa-link me-1"></i>enspiredasia.com · POS &amp; CMS Deliverables</p>
+            <ul>
+              <li>Engineered Laravel POS systems, CodeIgniter management tools, and client WordPress sites.</li>
+              <li>Integrated DataTables, Summernote editors, and Owl Carousel components for dynamic UX.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLOATING CLIENTS ============ -->
+  <section class="clients-section grid-section" id="clients">
+    <div class="container pt-5">
+      <div class="reveal">
+        <span class="section-label">06. Clients</span>
+        <h2 class="section-title">Clients &amp; Collaborators</h2>
+        <p class="section-brief">Teams I've built with — government bodies, enterprise groups, startups, and product squads.</p>
+      </div>
+    </div>
+
+    <!-- Scattered square-card canvas -->
+    <div class="container clients-canvas" aria-label="Client cards">
+
+      <article class="client-card" style="--fx-delay: 0s; --fx-duration: 5.5s;">
+        <div class="client-head">
+          <i class="fa-solid fa-hotel client-logo"></i>
+          <span class="client-status active-dot" title="Live engagement"></span>
+        </div>
+        <div class="client-center">
+          <img class="client-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Arif Mahmud">
+          <span class="client-name">Arif Mahmud</span>
+          <span class="client-role">Project Director</span>
+        </div>
+        <div class="client-foot">
+          <span class="client-company">hotels.gov.bd</span>
+          <span class="client-tag">Government ERP</span>
+        </div>
+        <div class="client-quote" role="tooltip">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"Delivered a booking platform our entire network depends on daily. Rock-solid engineering."</p>
+        </div>
+      </article>
+
+      <article class="client-card" style="--fx-delay: 1.2s; --fx-duration: 4.2s;">
+        <div class="client-head">
+          <i class="fa-solid fa-plane client-logo"></i>
+          <span class="client-status" title="Completed"></span>
+        </div>
+        <div class="client-center">
+          <img class="client-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Nusrat Jahan">
+          <span class="client-name">Nusrat Jahan</span>
+          <span class="client-role">Operations Lead</span>
+        </div>
+        <div class="client-foot">
+          <span class="client-company">Tigers Den Ltd</span>
+          <span class="client-tag">Automotive ERP</span>
+        </div>
+        <div class="client-quote" role="tooltip">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"Stock alerts and PDF reports cut our inventory overhead by hours every week."</p>
+        </div>
+      </article>
+
+      <article class="client-card" style="--fx-delay: 0.6s; --fx-duration: 6s;">
+        <div class="client-head">
+          <i class="fa-solid fa-cash-register client-logo"></i>
+          <span class="client-status active-dot" title="Live engagement"></span>
+        </div>
+        <div class="client-center">
+          <img class="client-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Tanvir Hasan">
+          <span class="client-name">Tanvir Hasan</span>
+          <span class="client-role">Managing Director</span>
+        </div>
+        <div class="client-foot">
+          <span class="client-company">iBusiness POS</span>
+          <span class="client-tag">Retail SaaS</span>
+        </div>
+        <div class="client-quote" role="tooltip">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"Our POS runs 40+ terminals without downtime. The accounting core just works."</p>
+        </div>
+      </article>
+
+      <article class="client-card" style="--fx-delay: 2s; --fx-duration: 4.8s;">
+        <div class="client-head">
+          <i class="fa-solid fa-globe client-logo"></i>
+          <span class="client-status" title="Completed"></span>
+        </div>
+        <div class="client-center">
+          <img class="client-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Sarah Mitchell">
+          <span class="client-name">Sarah Mitchell</span>
+          <span class="client-role">Product Consultant</span>
+        </div>
+        <div class="client-foot">
+          <span class="client-company">Rigglo Tech</span>
+          <span class="client-tag">Web Consultancy</span>
+        </div>
+        <div class="client-quote" role="tooltip">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>"Clean Laravel delivery with hosting handover — exactly what our corporate clients needed."</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="py-5 grid-section" id="testimonials">
+    <div class="container pt-3">
+      <div class="reveal">
+        <span class="section-label">07. Words</span>
+        <h2 class="section-title">Testimonials</h2>
+        <p class="section-brief">Feedback from managers and clients who shipped software alongside me.</p>
+      </div>
+
+       <div class="testimonial-component pb-0">
+        <div class="container pt-5">
+            <!-- Swiper Carousel Container -->
+            <div class="swiper testimonial-swiper">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="row g-4 justify-content-center align-items-center">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="testimonial-profile-card">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Jone Duone Joe" class="testimonial-profile-img">
+                                    <div class="testimonial-company-tag">BOUND - TROLOLA</div>
+                                    <h3 class="testimonial-profile-name">Jone Duone Joe</h3>
+                                    <p class="testimonial-profile-role">Operating Officer</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7">
+                                <div class="d-flex justify-content-between align-items-end mb-2">
+                                    <div class="testimonial-quote-icon">
+                                        <i class="fa-solid fa-quote-left"></i>
+                                    </div>
+                                    <div class="testimonial-nav-buttons d-flex gap-2">
+                                        <button class="testimonial-nav-btn btn-prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
+                                        <button class="testimonial-nav-btn btn-next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-content-card">
+                                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                                        <div>
+                                            <h4 class="testimonial-project-title">Web App Development</h4>
+                                            <div class="testimonial-project-date">Upwork - Mar 4, 2016 - Aug 30, 2021</div>
+                                        </div>
+                                        <div class="testimonial-rating-box">
+                                            <div class="testimonial-rating-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="testimonial-divider"></div>
+
+                                    <p class="testimonial-text mb-0">
+                                        Maecenas finibus nec sem ut imperdiet. Ut tincidunt est ac dolor aliquam sodales. Phasellus sed mauris hendrerit, laoreet sem in, lobortis mauris hendrerit ante. Ut tincidunt est ac dolor aliquam sodales.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="row g-4 justify-content-center align-items-center">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="testimonial-profile-card">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" alt="Sarah Jenkins" class="testimonial-profile-img">
+                                    <div class="testimonial-company-tag">DESIGN LAB</div>
+                                    <h3 class="testimonial-profile-name">Sarah Jenkins</h3>
+                                    <p class="testimonial-profile-role">Product Manager</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7 col-md-7">
+                                <div class="d-flex justify-content-between align-items-end mb-2">
+                                    <div class="testimonial-quote-icon">
+                                        <i class="fa-solid fa-quote-left"></i>
+                                    </div>
+                                    <div class="testimonial-nav-buttons d-flex gap-2">
+                                        <button class="testimonial-nav-btn btn-prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
+                                        <button class="testimonial-nav-btn btn-next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-content-card">
+                                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                                        <div>
+                                            <h4 class="testimonial-project-title">Mobile UI Redesign</h4>
+                                            <div class="testimonial-project-date">Fiverr - Jan 15, 2022 - Nov 10, 2022</div>
+                                        </div>
+                                        <div class="testimonial-rating-box">
+                                            <div class="testimonial-rating-stars">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="testimonial-divider"></div>
+
+                                    <p class="testimonial-text mb-0">
+                                        Exceeded all expectations with prompt delivery and slick execution. Communication was clear throughout the product design sprints.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Custom Swiper Pagination Dots -->
+                <div class="swiper-pagination testimonial-pagination"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-section grid-section py-5" id="contact">
+    <div class="container text-center py-3">
+      <div class="reveal">
+        <span class="section-label text-start">08. Connect</span>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+
+      <div class="contact-component py-5">
+        <div class="">
+            <div class="row g-5 justify-content-center">
+                <!-- Left Profile Card -->
+                <div class="col-lg-4 col-md-5">
+                    <div class="contact-info-card h-100">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Contact" class="contact-card-img">
+                        
+                        <h3 class="contact-name">Prince Costa</h3>
+                        <p class="contact-desc">
+                            I am available for freelance work. Connect with me via email, LinkedIn and call in to my account.
+                        </p>
+                        
+                        <div class="contact-details mb-3">
+                            <p class="mb-1">
+                              <a href="https://wa.me/8801882565483" target="_blank" class="contact-pill border-0 py-1 px-2">
+                                <i class="fa-brands fa-whatsapp me-1"></i>+880 1882 565483
+                              </a>
+                            </p>
+                            <p class="mb-0">
+                              <a href="mailto:princecosta9@gmail.com" class="contact-pill border-0  py-1 px-2">
+                                <i class="fa-solid fa-envelope"></i>princecosta9@gmail.com
+                              </a>
+                            </p>
+                        </div>
+
+                        <div class="contact-socials">
+                            <span class="social-label mb-2">FIND WITH ME</span>
+                            <div class="d-flex gap-3 justify-content-center">
+                                <a href="https://github.com/Prince-Costa" target="_blank" class="social-icon-btn contact-pill" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://www.facebook.com/PrinceProkobin" target="_blank" class="social-icon-btn contact-pill" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/prince_p_costa" target="_blank" class="social-icon-btn contact-pill" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/in/Prince-Costa" target="_blank" class="social-icon-btn contact-pill" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                            <div class="mt-3">
+                              <a href="asset/cv/Prince%20Costa%2001882565483.pdf" download="Prince Costa - CV.pdf" class="btn-neon ghost cv-download-btn mt-5">Download CV <i class="fa-solid fa-file-arrow-down ms-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Contact Form Card -->
+                <div class="col-lg-8 col-md-7">
+                    <div class="contact-form-card">
+                        <!-- Contact Form -->
+                        <form id="contact-form" novalidate>
+                          <div class="row g-3">
+                            <div class="col-md-6">
+                              <div class="form-field">
+                                <label for="cf-name" class="form-label">Name</label>
+                                <input type="text" id="cf-name" class="form-input" placeholder="John Doe" required />
+                                <span class="field-error">Please enter your name.</span>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-field">
+                                <label for="cf-email" class="form-label">Email</label>
+                                <input type="email" id="cf-email" class="form-input" placeholder="john@example.com" required />
+                                <span class="field-error">Please enter a valid email.</span>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-field">
+                                <label for="cf-subject" class="form-label">Subject</label>
+                                <input type="text" id="cf-subject" class="form-input" placeholder="Project inquiry" required />
+                                <span class="field-error">Please enter a subject.</span>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-field">
+                                <label for="cf-message" class="form-label">Message</label>
+                                <textarea id="cf-message" class="form-input" rows="5" placeholder="Tell me about your project..." required></textarea>
+                                <span class="field-error">Please enter a message.</span>
+                              </div>
+                            </div>
+                            <div class="col-12 text-center text-md-start">
+                              <button type="submit" class="btn-neon" id="cf-submit">
+                                <span class="cf-btn-text">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></span>
+                                <span class="cf-btn-loading d-none"><i class="fa-solid fa-circle-notch fa-spin me-2"></i>Sending...</span>
+                              </button>
+                            </div>
+                            <div class="col-12">
+                              <div id="cf-status" class="cf-status d-none" role="alert"></div>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-identity">
+          <a class="footer-brand" href="#about"><span>_ _{{ </span> Prince Costa <span> }}</span></a>
+          <p>Backend systems, thoughtful interfaces, and software that earns its place in the workflow.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <span class="footer-heading">Explore</span>
+          <a href="#about">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#featured-projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#clients">Clients</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-connect">
+          <span class="footer-heading">Let’s connect</span>
+          <a class="footer-email" href="mailto:princecosta9@gmail.com">princecosta9@gmail.com <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          <div class="footer-socials">
+            <a href="https://wa.me/8801882565483" aria-label="WhatsApp Prince Costa"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:princecosta9@gmail.com" aria-label="Email Prince Costa"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/Prince-Costa" target="_blank" class="social-icon-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.facebook.com/PrinceProkobin" target="_blank" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/prince_p_costa" target="_blank" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/Prince-Costa" target="_blank" class="social-icon-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Prince Costa. Built with ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg class="progress-ring" viewBox="0 0 48 48" aria-hidden="true">
+      <circle class="progress-ring-track" cx="24" cy="24" r="22"></circle>
+      <circle class="progress-ring-bar" cx="24" cy="24" r="22"></circle>
+    </svg>
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- JS: vendor -->
+  <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/js/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/js/typed.umd.js"></script>
+  <script src="assets/vendor/js/gsap.min.js"></script>
+  <script src="assets/vendor/js/ScrollTrigger.min.js"></script>
+  <!-- JS: site (shared + homepage) -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/index.js"></script>
+</body>
+</html>
