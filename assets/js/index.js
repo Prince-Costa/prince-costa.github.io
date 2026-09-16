@@ -523,8 +523,8 @@ form.addEventListener('submit', async (e) => {
   } catch (error) {
     recaptchaToken.value = '';
     setLoading(false);
-    const message = error.text?.includes('reCAPTCHA: browser-error')
-      ? 'reCAPTCHA rejected this website origin. Add localhost and your production domain to the Google reCAPTCHA key settings.'
+    const message = error.text?.includes('reCAPTCHA: browser-error') || error.text?.includes('g-recaptcha-response parameter not found')
+      ? 'reCAPTCHA configuration failed. Confirm this site key and its EmailJS reCAPTCHA secret match, then allow localhost and your production domain.'
       : error.status === 403
       ? 'Email service blocked this file origin. Open the portfolio through a web server, or enable non-browser access in EmailJS Security settings.'
       : error.message?.includes('timed out')
