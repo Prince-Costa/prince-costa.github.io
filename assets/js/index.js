@@ -514,6 +514,8 @@ form.addEventListener('submit', async (e) => {
     try {
       await submitWithFreshToken();
     } catch (firstError) {
+      const retryable = firstError.message?.includes('timed out');
+      if (!retryable) throw firstError;
       recaptchaToken.value = '';
       await submitWithFreshToken();
     }
@@ -523,7 +525,9 @@ form.addEventListener('submit', async (e) => {
   } catch (error) {
     recaptchaToken.value = '';
     setLoading(false);
-    const message = error.text?.includes('reCAPTCHA: browser-error') || error.text?.includes('g-recaptcha-response parameter not found')
+    const message = error.text?.toLowerCase().includes('bot detected')
+      ? 'reCAPTCHA flagged this submission. Please reload the page and try again without automated tools.'
+      : error.text?.includes('reCAPTCHA: browser-error') || error.text?.includes('g-recaptcha-response parameter not found')
       ? 'reCAPTCHA configuration failed. Confirm this site key and its EmailJS reCAPTCHA secret match, then allow localhost and your production domain.'
       : error.status === 403
       ? 'Email service blocked this file origin. Open the portfolio through a web server, or enable non-browser access in EmailJS Security settings.'
