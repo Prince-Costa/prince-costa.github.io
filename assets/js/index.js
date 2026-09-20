@@ -387,7 +387,7 @@ const metricsObserver = new IntersectionObserver((entries) => {
 const metricsEl = document.querySelector('.about-metrics');
 if (metricsEl) metricsObserver.observe(metricsEl);
 
-// Contact form — EmailJS delivery with honeypot, invisible reCAPTCHA v2, and cooldown.
+// Contact form — EmailJS delivery with honeypot, reCAPTCHA v2 checkbox, and cooldown.
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('cf-status');
 const submitBtn = document.getElementById('cf-submit');
@@ -458,12 +458,10 @@ const getRecaptchaResponse = () => {
   return widget ? widget.value : '';
 };
 
-// Render the invisible reCAPTCHA v2 widget inside #recaptcha-box.
+// Render the reCAPTCHA v2 checkbox widget inside #recaptcha-box.
 window.recaptchaLoaded = () => {
   window.grecaptcha.render('recaptcha-box', {
     sitekey: RECAPTCHA_SITE_KEY,
-    size: 'invisible',
-    callback: () => form.requestSubmit(),
   });
 };
 
@@ -506,10 +504,9 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  // Invisible v2: if the challenge hasn't been solved yet, run it first.
-  // Its callback re-submits the form, landing here again with a token.
+  // v2 checkbox: the token only exists after the visitor checks the box.
   if (!getRecaptchaResponse()) {
-    window.grecaptcha.execute();
+    setStatus('error', 'Please check the reCAPTCHA box, then send again.');
     return;
   }
 
