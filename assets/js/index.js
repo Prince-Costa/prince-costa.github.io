@@ -387,14 +387,13 @@ const metricsObserver = new IntersectionObserver((entries) => {
 const metricsEl = document.querySelector('.about-metrics');
 if (metricsEl) metricsObserver.observe(metricsEl);
 
-// Contact form — EmailJS delivery with honeypot, reCAPTCHA v3, and cooldown.
+// Contact form — EmailJS delivery with honeypot, invisible reCAPTCHA v2, and cooldown.
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('cf-status');
 const submitBtn = document.getElementById('cf-submit');
 const btnText = submitBtn.querySelector('.cf-btn-text');
 const btnLoading = submitBtn.querySelector('.cf-btn-loading');
 const honeypot = form.elements.website;
-const recaptchaToken = document.getElementById('recaptcha-token');
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const EMAILJS_PUBLIC_KEY = '1klBRVxE70Egr_CfW';
 const EMAILJS_SERVICE_ID = 'service_wy3zkya';
@@ -454,17 +453,19 @@ const startCooldown = () => {
   }, 1000);
 };
 
-const getRecaptchaToken = () => new Promise((resolve, reject) => {
-  if (RECAPTCHA_SITE_KEY === 'YOUR_RECAPTCHA_SITE_KEY' || !window.grecaptcha) {
-    reject(new Error('reCAPTCHA is not configured yet.'));
-    return;
-  }
-  window.grecaptcha.ready(() => {
-    window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
-      .then(resolve)
-      .catch(reject);
+const getRecaptchaResponse = () => {
+  const widget = document.querySelector('#contact-form textarea[name="g-recaptcha-response"], #contact-form input[name="g-recaptcha-response"]');
+  return widget ? widget.value : '';
+};
+
+// Render the invisible reCAPTCHA v2 widget inside #recaptcha-box.
+window.recaptchaLoaded = () => {
+  window.grecaptcha.render('recaptcha-box', {
+    sitekey: RECAPTCHA_SITE_KEY,
+    size: 'invisible',
+    callback: () => form.requestSubmit(),
   });
-});
+};
 
 const withTimeout = (promise, message) => new Promise((resolve, reject) => {
   const timeoutId = window.setTimeout(() => reject(new Error(message)), REQUEST_TIMEOUT_MS);
@@ -480,11 +481,7 @@ const withTimeout = (promise, message) => new Promise((resolve, reject) => {
   );
 });
 
-const submitWithFreshToken = async () => {
-  recaptchaToken.value = await withTimeout(
-    getRecaptchaToken(),
-    'CAPTCHA verification timed out.'
-  );
+const submitWithCaptcha = async () => {
   emailjs.init(EMAILJS_PUBLIC_KEY);
   await withTimeout(
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, '#contact-form'),
@@ -509,22 +506,23 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
+  // Invisible v2: if the challenge hasn't been solved yet, run it first.
+  // Its callback re-submits the form, landing here again with a token.
+  if (!getRecaptchaResponse()) {
+    window.grecaptcha.execute();
+    return;
+  }
+
   setLoading(true);
   try {
-    try {
-      await submitWithFreshToken();
-    } catch (firstError) {
-      const retryable = firstError.message?.includes('timed out');
-      if (!retryable) throw firstError;
-      recaptchaToken.value = '';
-      await submitWithFreshToken();
-    }
+    await submitWithCaptcha();
     setStatus('success', 'Message sent successfully. Thanks for reaching out!');
     form.reset();
+    window.grecaptcha.reset();
     startCooldown();
   } catch (error) {
-    recaptchaToken.value = '';
     setLoading(false);
+    window.grecaptcha.reset();
     const message = error.text?.toLowerCase().includes('bot detected')
       ? 'reCAPTCHA flagged this submission. Please reload the page and try again without automated tools.'
       : error.text?.includes('reCAPTCHA: browser-error') || error.text?.includes('g-recaptcha-response parameter not found')
@@ -532,7 +530,7 @@ form.addEventListener('submit', async (e) => {
       : error.status === 403
       ? 'Email service blocked this file origin. Open the portfolio through a web server, or enable non-browser access in EmailJS Security settings.'
       : error.message?.includes('timed out')
-      ? 'Session expired, please click Send again.'
+      ? 'Email service timed out. Please click Send again.'
       : (error.text || error.message || 'Something went wrong. Please try again.');
     setStatus('error', message);
   }
