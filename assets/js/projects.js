@@ -13,6 +13,12 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/porjotan.png',
     thumb: 'asset/img/projects/hotels-gov.webp',
+    gallery: [
+      'asset/img/porjotan.png',
+      'asset/img/projects/porjotan2.png',
+      'asset/img/projects/porjotan3.png',
+      'asset/img/projects/porjotan4.png',
+    ],
     description: 'Core booking engine, administrative management modules, and user workflows for a national hotel network — full room inventory, guest check-in/out, billing, and government-level reporting across multiple properties.',
     highlights: [
       'Room inventory with guest check-in/out and billing',
@@ -27,6 +33,12 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/car-parts.webp',
     thumb: 'asset/img/projects/car-parts.webp',
+    gallery: [
+      'asset/img/car-parts.webp',
+      'asset/img/projects/car-parts2.png',
+      'asset/img/projects/car-parts3.png',
+      'asset/img/projects/remal-parts.png',
+    ],
     description: 'Stock tracking with low-stock alerts, dynamic Excel/PDF reporting, and full checkout workflows for parts sales.',
     highlights: [
       'Automated low-stock alerts and supplier tracking',
@@ -41,6 +53,14 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/sky-wings.webp',
     thumb: 'asset/img/projects/sky-wings.webp',
+    gallery: [
+      'asset/img/sky-wings.webp',
+      'asset/img/sky-wings-parts.webp',
+      'asset/img/projects/sky-wings2.png',
+      'asset/img/projects/sky-wings3.png',
+      'asset/img/projects/sky-wings4.png',
+      'asset/img/projects/sky-wings5.png',
+    ],
     description: 'ERP software with RBAC security, detailed financial reporting, and itemized account management — built for aviation parts operations.',
     highlights: [
       'RBAC security across operational roles',
@@ -55,6 +75,14 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/ibusiness-full.webp',
     thumb: 'asset/img/projects/ibusiness.webp',
+    gallery: [
+      'asset/img/ibusiness-full.webp',
+      'asset/img/projects/ibusiness2.webp',
+      'asset/img/projects/ibusiness3.webp',
+      'asset/img/projects/ibusiness4.webp',
+      'asset/img/projects/ibusiness5.webp',
+      'asset/img/projects/ibusiness6.webp',
+    ],
     description: 'Multi-vendor supported POS software with RBAC security, detailed financial reporting, and itemized account management.',
     highlights: [
       'Multi-vendor marketplace and POS workflows',
@@ -69,6 +97,10 @@ const projects = [
     stack: ['Laravel', 'Bootstrap'],
     img: 'asset/img/rigglotel-full.webp',
     thumb: 'asset/img/projects/rigglotel.webp',
+    gallery: [
+      'asset/img/rigglotel-full.webp',
+      'asset/img/projects/rigglotel2.webp',
+    ],
     description: 'Empowering global telecommunications. RiggloTel delivers high-quality, carrier-grade A–Z Voice Termination, wholesale VoIP routes, bulk SMS messaging, and flexible eSIM connectivity solutions worldwide.',
     highlights: [
       'Admin panel for projects and client relations',
@@ -83,6 +115,10 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'jQuery', 'Bootstrap'],
     img: 'asset/img/rigglotech-full.webp',
     thumb: 'asset/img/projects/rigglotech.webp',
+    gallery: [
+      'asset/img/rigglotech-full.webp',
+      'asset/img/projects/rigglotech2.webp',
+    ],
     description: 'A comprehensive showcase of Rigglotech services — includes a robust admin control panel for seamless management of projects, client relations, employee workflows, and dynamic website content.',
     highlights: [
       'Admin panel for projects and client relations',
@@ -97,6 +133,10 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/voip-forum-full.webp',
     thumb: 'asset/img/projects/voip-forum.webp',
+    gallery: [
+      'asset/img/voip-forum-full.webp',
+      'asset/img/projects/voip-forum2.webp',
+    ],
     description: 'Dedicated B2B networking portal for the telecommunications industry — carriers and aggregators buy and sell wholesale VoIP routes, discuss IP telephony hardware and software, and establish trusted business partnerships globally.',
     highlights: [
       'Wholesale VoIP route marketplace',
@@ -108,9 +148,14 @@ const projects = [
     url: 'https://www.tohaltd.com/',
     title: 'Toha-diamond',
     type: 'Construction',
-    stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
+    stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap','Dual Language'],
     img: 'asset/img/toha-diamond-full.webp',
     thumb: 'asset/img/projects/toha-diamond.webp',
+    gallery: [
+      'asset/img/toha-diamond-full.webp',
+      'asset/img/toha-diamond-full2.webp',
+      'asset/img/toha-diamond-full3.webp',
+    ],
     description: 'Empowering Saudi Arabia\u2019s infrastructure and development — end-to-end building construction, MEP installation, commercial cleaning, and skilled manpower supply for efficient project execution and reliable facility management.',
     highlights: [
       'End-to-end building construction services',
@@ -125,6 +170,10 @@ const projects = [
     stack: ['Laravel', 'MySQL', 'DataTable.js', 'jQuery', 'Bootstrap'],
     img: 'asset/img/visastation-full.webp',
     thumb: 'asset/img/projects/visa-station.webp',
+    gallery: [
+      'asset/img/visastation-full.webp',
+      'asset/img/visastation-full2.webp',
+    ],
     description: 'Comprehensive UK legal and immigration consultancy — student and skilled worker visas, family reunification, Indefinite Leave to Remain (ILR), and British citizenship applications guided by specialist advisors.',
     highlights: [
       'Student & skilled worker visa guidance',
@@ -136,9 +185,14 @@ const projects = [
     url: 'https://lpkeducation.one/',
     title: 'Lpk-education',
     type: 'Education',
-    stack: ['PHP','Bootstrap'],
+    stack: ['PHP','Bootstrap','jQuery'],
     img: 'asset/img/lpk-full.webp',
     thumb: 'asset/img/projects/lpk-edu.webp',
+    gallery: [
+      'asset/img/lpk-full.webp',
+      'asset/img/lpk-full2.webp',
+      'asset/img/lpk-full3.webp',
+    ],
     description: 'Empowering career growth through practical tech and vocational training — hands-on courses in web development, graphics design, digital marketing, and IT skills designed to build job-ready expertise.',
     highlights: [
       'Hands-on web development courses',
@@ -150,9 +204,15 @@ const projects = [
     url: 'https://rigglosim.com/',
     title: 'Rigglosim',
     type: 'E-commerce',
-    stack: ['Shopify'],
+    stack: ['Shopify','jQuery','Bootstrap'],
     img: 'asset/img/rigglo-sim-full.webp',
     thumb: 'asset/img/projects/rigglo-sim.webp',
+    gallery: [
+      'asset/img/rigglo-sim-full.webp',
+      'asset/img/projects/rigglo-sim2.webp',
+      'asset/img/projects/rigglo-sim3.webp',
+      'asset/img/projects/rigglo-sim4.webp',
+    ],
     description: 'Global eSIM & travel data solutions — connect instantly with local data plans across the globe without expensive roaming fees.',
     highlights: [
       'Global eSIM catalogue by destination',
@@ -166,7 +226,6 @@ const $ = (id) => document.getElementById(id);
 const els = {
   url: $('archive-url'),
   open: $('archive-open'),
-  img: $('archive-img'),
   kicker: $('archive-kicker'),
   type: $('archive-type'),
   title: $('archive-title'),
@@ -177,9 +236,115 @@ const els = {
   count: $('archive-count'),
   list: $('archive-list'),
   main: $('archive-main'),
+  carousel: $('archive-carousel'),
+  track: $('carousel-track'),
+  prev: $('carousel-prev'),
+  next: $('carousel-next'),
+  dots: $('carousel-dots'),
+  counter: $('carousel-counter'),
 };
 
 const isPlaceholder = (url) => !url || url === '#';
+
+/* ============================================================
+   PROJECT CAROUSEL (archive viewport)
+   Projects with a gallery array get arrows, dots and autoplay.
+   ============================================================ */
+const carousel = {
+  images: [],
+  index: 0,
+  autoplay: null,
+};
+
+function renderCarousel(project) {
+  carousel.images = project.gallery && project.gallery.length
+    ? project.gallery
+    : [project.img];
+  carousel.index = 0;
+
+  els.track.replaceChildren(...carousel.images.map((src) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = project.title;
+    img.loading = 'lazy';
+    img.draggable = false;
+    slide.appendChild(img);
+    return slide;
+  }));
+
+  els.dots.replaceChildren(...carousel.images.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', `Go to screenshot ${i + 1}`);
+    dot.addEventListener('click', () => showSlide(i));
+    return dot;
+  }));
+
+  const hasGallery = carousel.images.length > 1;
+  els.carousel.classList.toggle('has-gallery', hasGallery);
+  showSlide(0);
+}
+
+function showSlide(index) {
+  const total = carousel.images.length;
+  if (!total) return;
+  carousel.index = ((index % total) + total) % total;
+  els.track.style.transform = `translateX(-${carousel.index * 100}%)`;
+
+  els.dots.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === carousel.index);
+  });
+  els.counter.textContent = `${carousel.index + 1} / ${total}`;
+}
+
+function startAutoplay() {
+  stopAutoplay();
+  if (carousel.images.length < 2) return;
+  carousel.autoplay = setInterval(() => showSlide(carousel.index + 1), 4000);
+}
+
+function stopAutoplay() {
+  if (carousel.autoplay) {
+    clearInterval(carousel.autoplay);
+    carousel.autoplay = null;
+  }
+}
+
+els.prev.addEventListener('click', () => {
+  showSlide(carousel.index - 1);
+  startAutoplay();
+});
+els.next.addEventListener('click', () => {
+  showSlide(carousel.index + 1);
+  startAutoplay();
+});
+
+// Pause autoplay while hovering the viewport
+els.carousel.addEventListener('mouseenter', stopAutoplay);
+els.carousel.addEventListener('mouseleave', startAutoplay);
+
+// Touch swipe
+let touchStartX = null;
+els.carousel.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  stopAutoplay();
+}, { passive: true });
+els.carousel.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const delta = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(delta) > 40) showSlide(carousel.index + (delta < 0 ? 1 : -1));
+  touchStartX = null;
+  startAutoplay();
+});
+
+// Keyboard arrows when the viewport is focused
+els.carousel.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') { showSlide(carousel.index - 1); startAutoplay(); }
+  if (e.key === 'ArrowRight') { showSlide(carousel.index + 1); startAutoplay(); }
+});
 
 function renderProject(index) {
   const p = projects[index];
@@ -187,8 +352,7 @@ function renderProject(index) {
 
   els.url.textContent = isPlaceholder(p.url) ? 'internal.demo/build' : p.url;
   els.open.href = isPlaceholder(p.url) ? '#' : p.url;
-  els.img.src = p.img;
-  els.img.alt = p.title;
+  renderCarousel(p);
   els.kicker.textContent = `${String(index + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')} · FEATURED WORK`;
   els.type.textContent = p.type;
   els.title.textContent = p.title;
@@ -228,6 +392,8 @@ function renderProject(index) {
   els.main.classList.remove('is-switching');
   void els.main.offsetWidth;
   els.main.classList.add('is-switching');
+
+  startAutoplay();
 }
 
 els.count.textContent = String(projects.length).padStart(2, '0');
