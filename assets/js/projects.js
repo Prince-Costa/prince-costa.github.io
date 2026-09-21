@@ -242,39 +242,75 @@ const els = {
   next: $('carousel-next'),
   dots: $('carousel-dots'),
   counter: $('carousel-counter'),
+  loading: $('carousel-loading'),
 };
 
 const isPlaceholder = (url) => !url || url === '#';
 
 /* ============================================================
-   PROJECT CAROUSEL (archive viewport)
-   Projects with a gallery array get arrows, dots and autoplay.
+   PROJECT CAROUSEL (archive viewport) — lazy, on-demand loading
+   Images are fetched only when a project is selected (AJAX-style
+   HTTP GET via Image preloading) and cached per URL. Works on
+   static hosts like GitHub Pages.
    ============================================================ */
 const carousel = {
   images: [],
   index: 0,
   autoplay: null,
+  cache: new Set(),      // URLs already fully downloaded
+  requestToken: 0,       // guards against out-of-order responses
 };
 
-function renderCarousel(project) {
-  carousel.images = project.gallery && project.gallery.length
+// Resolve a URL once, via the browser cache + Image preload.
+// Returns a promise that settles when the image is downloaded.
+function fetchImage(src) {
+  return new Promise((resolve) => {
+    if (carousel.cache.has(src)) return resolve(src);
+    const img = new Image();
+    img.onload = () => { carousel.cache.add(src); resolve(src); };
+    img.onerror = () => resolve(null); // don't block the whole gallery
+    img.src = src;
+  });
+}
+
+function setLoading(on) {
+  els.loading.classList.toggle('is-active', on);
+  els.loading.setAttribute('aria-hidden', on ? 'false' : 'true');
+  els.carousel.classList.toggle('is-loading', on);
+}
+
+async function renderCarousel(project) {
+  const sources = project.gallery && project.gallery.length
     ? project.gallery
     : [project.img];
+  const token = ++carousel.requestToken;
   carousel.index = 0;
+  stopAutoplay();
 
-  els.track.replaceChildren(...carousel.images.map((src) => {
+  const pending = sources.filter((src) => !carousel.cache.has(src));
+  if (pending.length) setLoading(true);
+
+  // Download all screenshots for this project in parallel
+  await Promise.all(sources.map(fetchImage));
+
+  // User clicked another project while this one was loading
+  if (token !== carousel.requestToken) return;
+  setLoading(false);
+
+  carousel.images = sources;
+
+  els.track.replaceChildren(...sources.map((src) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
     const img = document.createElement('img');
     img.src = src;
     img.alt = project.title;
-    img.loading = 'lazy';
     img.draggable = false;
     slide.appendChild(img);
     return slide;
   }));
 
-  els.dots.replaceChildren(...carousel.images.map((_, i) => {
+  els.dots.replaceChildren(...sources.map((_, i) => {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'carousel-dot';
@@ -283,9 +319,10 @@ function renderCarousel(project) {
     return dot;
   }));
 
-  const hasGallery = carousel.images.length > 1;
+  const hasGallery = sources.length > 1;
   els.carousel.classList.toggle('has-gallery', hasGallery);
   showSlide(0);
+  startAutoplay();
 }
 
 function showSlide(index) {
@@ -392,8 +429,6 @@ function renderProject(index) {
   els.main.classList.remove('is-switching');
   void els.main.offsetWidth;
   els.main.classList.add('is-switching');
-
-  startAutoplay();
 }
 
 els.count.textContent = String(projects.length).padStart(2, '0');
