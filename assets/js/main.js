@@ -115,6 +115,24 @@ if (isProjectsPage) {
   updateActiveSection();
 }
 
+// Mobile navbar: collapse the menu when the user taps/clicks outside it,
+// or after following any link inside the menu.
+const navbarCollapse = document.getElementById('navbarNav');
+if (navbarCollapse) {
+  document.addEventListener('click', (event) => {
+    if (!navbarCollapse.classList.contains('show')) return;
+    if (navbarCollapse.contains(event.target)) {
+      if (event.target.closest('a')) {
+        bootstrap.Collapse.getInstance(navbarCollapse)?.hide();
+      }
+      return;
+    }
+    const navbar = navbarCollapse.closest('.navbar');
+    if (navbar && navbar.contains(event.target)) return;
+    bootstrap.Collapse.getInstance(navbarCollapse)?.hide();
+  });
+}
+
 // Reveal sections on scroll
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {

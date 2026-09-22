@@ -532,3 +532,17 @@ form.addEventListener('submit', async (e) => {
     setStatus('error', message);
   }
 });
+
+// Landing on index.html#section from projects.html: the browser scrolls to the
+// anchor before GSAP pins the featured-projects section and before images
+// settle, so the page ends up in the wrong place. Re-align after load.
+if (window.location.hash) {
+  const hashTarget = document.querySelector(window.location.hash);
+  if (hashTarget) {
+    const realignToHash = () => hashTarget.scrollIntoView();
+    window.addEventListener('load', () => {
+      // Let ScrollTrigger's load refresh + late images finish first.
+      window.setTimeout(realignToHash, 250);
+    });
+  }
+}
